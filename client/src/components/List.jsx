@@ -1,15 +1,17 @@
 import React from 'react';
-import ListItem from './ListItem.jsx';
 import { Grid, Image } from 'semantic-ui-react';
 
 class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      //hovering is not currently used but would be a cool UI feature to implement
+      //we left the infrastructure below for you to work with :)
       hover: false
     };
   }
   setButtonHovered(bool) {
+    //method not currently utilized
     this.state.hover = bool;
     if (this.state.hover === true) {
     }
@@ -18,14 +20,16 @@ class List extends React.Component {
     return (
       <Grid.Row columns={4}>
         {this.props.items.map((item, i) => {
+          //Remember that every row constitues a new List component because the results mapping is initiated in index.jsx
+          //so all this map does is create new Columns for containing div for each item in the Semantic-UI Grid
           return (
             <Grid.Column
               onMouseEnter={() => this.setButtonHovered(true)}
               onMouseLeave={() => this.setButtonHovered(false)}
             >
               <div style={{ float: 'left', position: 'relative' }}>
-                <a href={item.recipeUrl}>
-                  <Image src={item.imageUrl} style={{ borderRadius: '10px' }} />
+                <a href={item.recipeUrl}/*open an anchor tag and insert image*/>
+                  <Image src={item.imageUrl} style={{ borderRadius: '10px' }} /*set the size of the image*/ />
                   <div
                     style={{
                       position: 'absolute',
@@ -37,7 +41,7 @@ class List extends React.Component {
                       opacity: '0.6',
                       filter: 'alpha(opacity=60)'
                     }}
-                  >
+                  /*create a div for the information overlay and style the text. we use nested paragraph tags below to put a space between the recipe Name and Price*/>
                     <p
                       style={{
                         filter: 'alpha(opacity=50)',
