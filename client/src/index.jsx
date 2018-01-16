@@ -32,6 +32,8 @@ class App extends React.Component {
     });
   }
 
+  // Sends a POST request to the server with the defined search parameters
+  // State is updated with the database data returned from the server
   search(budget, keywords, servings) {
     console.log(`${budget} ${keywords} ${servings} was added`);
     var that = this;
@@ -64,6 +66,7 @@ class App extends React.Component {
       });
   }
 
+  // State is updated with recipes matching the chosen filters
   filter(option) {
     new Promise((resolve, reject) => {
       resolve(
@@ -82,6 +85,8 @@ class App extends React.Component {
     });
   }
 
+  // Creates filters component if there are any recipe results
+  // Renders background image, logo, search, filters, and list components
   render() {
     let filters;
 
