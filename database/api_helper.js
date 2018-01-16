@@ -7,9 +7,9 @@ if (process.env.NODE_ENV === 'production') {
   PROJECT_KEY = process.env.PROJECT_KEY;
   PROJECT_HOST = process.env.PROJECT_HOST;
 } else {
-  config = require('../config.js');
-  PROJECT_KEY = config.PROJECT_KEY;
-  PROJECT_HOST = config.PROJECT_HOST;
+  // config = require('../config.js');
+  // PROJECT_KEY = config.PROJECT_KEY;
+  // PROJECT_HOST = config.PROJECT_HOST;
 }
 
 
