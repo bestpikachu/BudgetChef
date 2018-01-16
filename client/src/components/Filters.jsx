@@ -7,6 +7,8 @@ class Filters extends React.Component {
     super(props);
 
     this.state = {
+      //the results are passed in as props, and mapped for the needed attribute (one of three below). Potential dupes are handled in the rendering below
+      //each result (itself an object) will have mutiple meals diets and cuisines -- so this will be an array of arrays
       cuisineArrays: this.props.results.map((recipe) => recipe.cuisines),
       dietArrays: this.props.results.map((recipe) => recipe.diets),
       mealArrays: this.props.results.map((recipe) => recipe.dishTypes)
@@ -23,11 +25,12 @@ class Filters extends React.Component {
                 <Dropdown.Menu>
                   {_.uniqBy(_.flatten(this.state.cuisineArrays)).map(
                     (cuisine, i) => {
+                      //this is the logic that flattens the array of arrays and removes duplicates and renders the unique dropdown items per the below
                       return (
                         <Dropdown.Item
                           key={i}
                           onClick={(event, data) =>
-                            this.props.onFilter(data.children)
+                            this.props.onFilter(data.children) //this is the onClick that calls the filter function in index.jsx. The cuisine text is actually rendered 3 lines below. Logic repeats for the other two categories.
                           }
                         >
                           {cuisine}

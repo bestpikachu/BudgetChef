@@ -1,74 +1,32 @@
 import _ from 'lodash';
-import faker from 'faker';
 import React from 'react';
 import { Button, Input, Label } from 'semantic-ui-react';
 import List from './List.jsx';
-
-const source = _.times(5, () => ({
-  title: faker.company.companyName(),
-  description: faker.company.catchPhrase(),
-  image: faker.internet.avatar(),
-  price: faker.finance.amount(0, 100, 2, '$')
-}));
 
 class SearchIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      //the state automatically updates with any user inputs
       budget: 0,
       isLoading: false,
       keywords: '',
-      servings: 0,
-      value: ''
+      servings: 0
     };
   }
 
-  componentWillMount() {
-    this.resetComponent();
-  }
-
-  resetComponent() {
-    this.setState({
-      isLoading: false,
-      value: ''
-    });
-  }
-
-  handleResultSelect(e) {
-    // this.setState({
-    //   value: result.title
-    // });
-  }
-  // why destructure result and value
-  handleSearchChange(e, { value }) {
-    this.setState({
-      isLoading: true,
-      value
-    });
-
-    setTimeout(() => {
-      if (this.state.value.length < 1) {
-        return this.resetComponent();
-      }
-
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
-      // const isMatch = (result) => {
-      //   return re.test(result.title);
-      // };
-
-      this.setState({
-        isLoading: false
-      });
-    }, 500);
-  }
 
   onChange(e) {
     this.setState({
+      //this function automatically updates the state based on if any of the input boxes are changed. It works because all the stateful properties won't be changed at the
+      //same time
       [e.target.name]: e.target.value
     });
   }
 
   onSubmit(e) {
+    //this triggers the search function in index.jsx when enter is pressed or when the
+    //search button is hit. It also resets the set immediately thereafter
     e.preventDefault();
     this.props.onSearch(
       this.state.budget,
@@ -93,8 +51,8 @@ class SearchIndex extends React.Component {
             labelPosition="right"
             type="text"
             placeholder="Amount"
-            value={this.state.budget}
-            onChange={this.onChange.bind(this)}
+            value={this.state.budget} // bind the value to the proper property in state so the onChange function could work
+            onChange={this.onChange.bind(this)} // on change input function that updates
           >
             <Label basic>$</Label>
             <input />
@@ -102,20 +60,20 @@ class SearchIndex extends React.Component {
           </Input>
           <Input
             name="servings"
-            label={{ basic: true, content: 'servings' }}
+            label={{ basic: true, content: 'servings' }}// Semantic UI syntax
             labelPosition="right"
             placeholder="Enter servings..."
-            value={this.state.servings}
-            onChange={this.onChange.bind(this)}
+            value={this.state.servings} // bind the value to the proper property in state so the onChange function could work
+            onChange={this.onChange.bind(this)} // on change input function that updates the state
           />
           <Input
             name="keywords"
             placeholder="Dish (optional)"
-            value={this.state.keywords}
-            onChange={this.onChange.bind(this)}
+            value={this.state.keywords} // bind the value to the proper property in state so the onChange function could work
+            onChange={this.onChange.bind(this)} // on change input function that updates the state
           >
             <input />
-            <Button type="submit" color="red" style={{ borderRadius: '5px' }}>
+            <Button type="submit" color="red" style={{ borderRadius: '5px' }} /* how to pass in CSS style in Semantic UI */>
               Search
             </Button>
           </Input>
