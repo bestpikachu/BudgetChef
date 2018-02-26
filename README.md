@@ -1,13 +1,13 @@
-# Project Name
+# BudgetChef
 
 > An app that generates recipes based on user’s budget or available ingredients.
 
 ## Team
 
-  - Thuan
-  - Travis
-  - Henry
-  - David
+  - [Thuan Tran - Software Engineer](https://github.com/toowan)
+  - [Travis Tillman - Software Engineer](https://github.com/semperviridis)
+  - [Henry Neale - Software Engineer](https://github.com/henryneale)
+  - [David Inoa - Software Engineer](https://github.com/davidinoa)
 
 ## Table of Contents
 
